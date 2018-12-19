@@ -1,0 +1,151 @@
+int in1 = 9;
+int in2 = 10;
+int in3 = 12;
+int in4 = 13;
+int LS=2;
+int RS=3;
+int MS=4;
+int a=LOW;
+int sensor=A1;
+int left_turn_delay=1200;
+int right_turn_delay=1200;
+int straight_delay=5000;
+void setup()
+{
+  Serial.begin(9600);
+  // set all the motor control pins to outputs
+  pinMode(in1, OUTPUT);
+  pinMode(in2, OUTPUT);
+  pinMode(in3, OUTPUT);
+  pinMode(in4, OUTPUT);
+  pinMode(LS, INPUT);
+  pinMode(RS, INPUT);
+  pinMode(MS, INPUT);
+}
+void loop()
+{
+  a=analogRead(sensor);
+  if((digitalRead(MS))){
+    
+    Serial.println(digitalRead(LS));
+    Serial.println(digitalRead(RS));
+    Serial.println();
+   
+      if(digitalRead(LS) && digitalRead(RS) )     // Move Forward
+  {
+    digitalWrite(in1, HIGH);
+    digitalWrite(in2, LOW);
+    digitalWrite(in3, HIGH);
+    digitalWrite(in4, LOW);
+  }
+  if(!(digitalRead(LS)) && digitalRead(RS))     // Turn right
+  {
+    digitalWrite(in1, HIGH);
+    digitalWrite(in2, LOW);
+    digitalWrite(in3, LOW);
+    digitalWrite(in4, HIGH);
+  }
+  if(digitalRead(LS) && !(digitalRead(RS)))     // turn left
+  {
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, HIGH);
+    digitalWrite(in3, HIGH);
+    digitalWrite(in4, LOW);
+  }
+  if(!(digitalRead(LS)) && !(digitalRead(RS)))     // stop
+  {
+     digitalWrite(in1, LOW);
+  digitalWrite(in2, LOW);  
+  digitalWrite(in3, LOW);
+  digitalWrite(in4, LOW);
+  }
+    
+    
+  }}
+//  else if(!(digitalRead(MS))){
+//
+//    //2sec left
+//    left();
+//  //2sec forward
+//    forward();
+//   //2sec right
+//   right();
+//   //2sec forward
+//   forward();
+//   //2sec right
+//   right();
+//   //2sec forward
+//   forwardEnd();
+//
+//   walk();
+//   
+//  }
+//}
+//
+//void right()
+//  {
+//  digitalWrite(in1, LOW);
+//  digitalWrite(in2, HIGH);  
+//  
+//  digitalWrite(in3, HIGH);
+//  digitalWrite(in4, LOW);
+//  
+//  delay(400);
+//  }
+//  
+//   void left()
+//  {
+//  digitalWrite(in1, HIGH);
+//  digitalWrite(in2, LOW);  
+//  ;
+//  digitalWrite(in3, LOW);
+//  digitalWrite(in4, HIGH); 
+//   
+//  delay(400);
+//  }
+//  
+//  void forward()
+//{ 
+//  digitalWrite(in1, HIGH);
+//  digitalWrite(in2, LOW);
+//  // set speed to 200 out of possible range 0~255
+//  
+//  // turn on motor B 
+//  digitalWrite(in3, HIGH);
+//  digitalWrite(in4, LOW);
+//  // set speed to 200 out of possible range 0~255
+//  
+//  delay(500);
+//}
+//
+//void forwardEnd()
+//{ 
+//  digitalWrite(in1, HIGH);
+//  digitalWrite(in2, LOW);
+//  // set speed to 200 out of possible range 0~255
+//  
+//  // turn on motor B 
+//  digitalWrite(in3, HIGH);
+//  digitalWrite(in4, LOW);
+//  // set speed to 200 out of possible range 0~255
+//  
+//  delay(900);
+//}
+//
+//void walk(){
+//  digitalWrite(in1, HIGH);
+//  digitalWrite(in2, LOW);
+//  
+//  digitalWrite(in3, HIGH);
+//  digitalWrite(in4, LOW);
+//  
+//  if(!(digitalRead(LS)) && !(digitalRead(RS)))
+//  {
+//    walk();
+//  }
+//  else if( digitalRead(LS) || digitalRead(RS))
+//  {
+//    return;loop();
+//  }
+//  
+//}
